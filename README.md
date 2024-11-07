@@ -4,7 +4,7 @@
 
 ![cutaway view](./petc-controller-cutaway-small.png)
 
-[(more photos)](./photos)
+[(more photos)](./photos) [(schematic)](./petc_schematic.jpg)
 
 This is an enclosure temperature controller for 3D printers.  It's a work in progress.  I was inspired by [Lars' Automated Heating System for Original Enclosure](https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure), but I wanted a different feature set.
 
@@ -133,6 +133,7 @@ I probably will not write up more detailed build instructions than this.  The as
 1. M3x12 or 4-40x1/2 flat head socket cap screws, 9 required for control box (*).
 1. M3x6 or 4-40x1/4 socket cap screws, 8 required for control box.  There is a close clearance on one of the screw heads to a header component on the RedBoard and I found that the 4-40 screw head fit better there than M3.  However, it would also probably be fine to just leave that one screw out.
 1. Two M3x8 or M3x10 socket head cap screws for attaching the control box to the front of the Original Prusa Enclosure.
+1. Two M3x8 socket cap screws to mount the thermostat to the heater.
 1. Two M3x10 and two M3x20 socket head cap screws, four M3 flat washers, and two M3 lockwashers, used on the standoffs below for mounting the heater.  This arrangement attemps to avoid putting 3D printed plastic in very close proximity to the heater, though if a high temperature filament like PC or PA is used (which is probably a very good idea anyway), a simpler mostly printed mount might be fine.  When ordering an assortment like the one above, which is not a bad idea for general use, you can get these all anyway.
 1. Two 8-32x3/4 inch or two M4x20 socket head cap screws for the angle adjustments on the heater mount (*).
 1. Three M3x8 or M3x10 socket head cap screws for attaching the heater mount to the Original Prusa Enclosure.
