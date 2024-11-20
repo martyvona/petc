@@ -272,10 +272,10 @@ void updateOutputs() {
   case STARTING:
     if (profile_mode == HEAT) {
       if (has_temp && current_temp_c < max_temp_c) { mode = HEAT; state = HEATING; }
-      else { mode = IDLE; state = RECOVERING; }
+      else { mode = CIRC; state = RECOVERING; }
     } else {
       if (has_temp && current_temp_c > min_temp_c) { mode = COOL; state = COOLING; }
-      else { mode = IDLE; state = RECOVERING; }
+      else { mode = CIRC; state = RECOVERING; }
     }
     break;
   case COOLING:
@@ -288,7 +288,7 @@ void updateOutputs() {
     break;
   }
 
-  if (!timerRunning() || !has_temp) mode = IDLE;
+  if ((!timerRunning() || !has_temp) && mode == HEAT) mode = IDLE;
 
   switch (mode) {
   case IDLE:
@@ -366,7 +366,7 @@ void updateUI() {
   case BTN_UP:
     switch (current_input) {
     case NO_INPUT: break;
-    case MODE_INPUT: if (timerRunning()) { incr(mode, NUM_MODES); state = MANUAL; } break;
+    case MODE_INPUT: incr(mode, NUM_MODES); state = MANUAL; break;
     case PROFILE_INPUT: setProfile(incr(profile, NUM_PROFILES)); break;
     case MIN_TEMP_INPUT: if (min_temp_c < max_temp_c - 1) incr(min_temp_c, MAX_ALLOWED_TEMP); break;
     case MAX_TEMP_INPUT: if (incr(max_temp_c, MAX_ALLOWED_TEMP) < min_temp_c) max_temp_c = min_temp_c + 1; break;
@@ -377,7 +377,7 @@ void updateUI() {
   case BTN_DOWN:
     switch (current_input) {
     case NO_INPUT: break;
-    case MODE_INPUT: if (timerRunning()) { decr(mode, NUM_MODES); state = MANUAL; } break;
+    case MODE_INPUT: decr(mode, NUM_MODES); state = MANUAL; break;
     case PROFILE_INPUT: setProfile(decr(profile, NUM_PROFILES)); break;
     case MIN_TEMP_INPUT: decr(min_temp_c, max_temp_c - 1); break;
     case MAX_TEMP_INPUT: if (max_temp_c > min_temp_c + 1) decr(max_temp_c, 100); break;
