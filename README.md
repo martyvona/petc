@@ -5,6 +5,7 @@
 [![cutaway view](./petc-controller-cutaway-small.png)](./petc-controller-cutaway.png)
 [![heater](./petc-heater-small.png)](./petc-heater.png)
 [![psu](./petc-psu-small.png)](./petc-psu.png)
+[![fan](./petc-fan-small.png)](./petc-fan.png)
 
 [(more photos)](./photos) [(schematic)](./petc_schematic.jpg)
 
@@ -47,7 +48,6 @@ It should also be possible to use this design as a starting point for various ot
 * separate power supplies for controller/sensors/display and heater/fans, so if you only want sensing you don't need the 24V high current power supply.
 
 # TODO
-* fan mount
 * test on printer
 * add serial monitor
 * read fan tachometer feedback
@@ -130,17 +130,24 @@ I probably will not write up more detailed build instructions than this.  The as
 1. JST-SM 2.5mm latching connectors, 32USD for a [kit including the crimping tool](https://www.amazon.com/dp/B08GR76H3D).  Use these to make 3 pin connectors for the DS18B20 sensors and a 4 pin connector for the DHT20 sensor.
 1. Tamiya connector pairs with 14AWG leads, 9USD for a [pack of three](https://www.amazon.com/FLY-RC-2Pairs-Battery-Connectors/dp/B07VL2B5C8).  Use two pairs to make a removable extension cable from the 24V power supply to the control box, and a third pair for the connection from the control box to the heater.  I recommend following the convention of using the ones with the male pins for power "sources", so the gendering would go `PSU---M | F---cable---M | F---control-box---M | F---cable-to-heater`.  Among other things that way the two connectors on the control box have different genders and so can't be confused.
 1. 14AWG silicone wire, 43USD for a [25ft/ea six color assortment](https://www.amazon.com/dp/B089CVGL3H).  Use this to make the high current cables from the power supply to the control box and from the control box to the heater.
-1. M3x12 or 4-40x1/2 flat head socket cap screws, 9 required for the control box (*).
-1. M3x6 or 4-40x1/4 socket cap screws, 8 required for the control box.  There is a close clearance on one of the screw heads to a header component on the RedBoard and I found that the 4-40 screw head fit better there than M3.  However, it would also probably be fine to just leave that one screw out.
-1. Two M3x8 or M3x10 socket head cap screws for attaching the control box to the front of the Original Prusa Enclosure.
-1. Two M3x8 socket cap screws to mount the thermostat to the heater.
-1. Three M3x8 socket cap screws to mount the heater assembly to the Original Prusa Enclosure.
-1. Two M3x10 and two M3x16 socket head cap screws, two M3 flat washers, and two M3 lockwashers, used on the standoffs for mounting the heater.  This arrangement attemps to avoid putting either the fan or the 3D printed parts very to the heater.
-1. Four M4x8 socket cap screws and four M5 washers to hold the heater element in its enclosure.
-1. Two M4x8 socket cap screws to mount the heater fan.
-1. Two 8-32x3/4 inch or two M4x20 socket head cap screws for the adjustable joints on the heater mount (*).
+1. 2.5mm zip ties to mount the sensors and cables to the enclosure.  The Original Prusa Enclosure comes with a pack of these.  If you need more, [this pack of 100](https://www.amazon.com/gp/product/B015HAV2NG) is 6USD.
 1. M3x40mm standoffs, 8USD for a [10 pack](https://www.amazon.com/dp/B0B97H2WJ7).  Two of these are used to mount the heater.
-1. TODO hardware for the exhaust fan.
+1. Two M3x10 and two M3x16 socket head cap screws, two M3 flat washers, and two M3 lockwashers, used on the standoffs for mounting the heater.  This arrangement attemps to avoid putting either the fan or the 3D printed parts very to the heater.
+1. Two M3x8 or 4-40x5/16 socket cap screws to mount the thermostat to the heater.
+1. Four M4x8 socket cap screws and four M5 washers to hold the heater element in its enclosure.
+1. Two M4x8 or 8-32x5/16 socket cap screws to mount the heater fan (*).
+1. Two 8-32x3/4 inch or two M4x20 socket head cap screws for the adjustable joints on the heater mount (*).
+1. Three M3x8, M3x10, 4-40x5/16, or 4-40x3/8 socket cap screws to mount the heater assembly to the Original Prusa Enclosure (*).
+1. Nine M3x12 or 4-40x1/2 flat head socket cap screws for the control box (*).
+1. Eight M3x6 or 4-40x1/4 socket cap screws for the control box.  There is a close clearance on one of the screw heads to a header component on the RedBoard and I found that the 4-40 screw head fit better there than M3.  However, it would also probably be fine to just leave that one screw out.
+1. Two M3x8, M3x10, 4-40x5/16, or 4-40x3/8 socket head cap screws for attaching the control box to the front of the Original Prusa Enclosure.
+1. Two or four M4x8 or 8-32x5/16 socket cap screws to mount the cooling fan (*).
+1. Six M2x12 or 2-56x1/2 socket cap screws to mount the cooling fan flaps (*).
+1. Four M3x8, M3x10, 4-40x5/16, or 4-40x3/8 socket cap screws to mount the cooling fan assembly to the Original Prusa Enclosure (*).
 
-(*) The tapped holes in the 3D printed parts are all sized for M3/4-40 or M4/8-32 tap diameter.  M3 tap diameter is about 0.010 inch (about 0.25mm) larger than the theoretical 4-40 tap diameter, however, the actual tolerance of the part will likely vary more than that, and perfect thread engagement is not required.  Similarly, 8-32 tap diameter about 0.007 inch (about 0.2mm) larger than M4.  You will likely want need a 4-40 or M3 and 8-32 or M4 tap lubricated with a little water to form the threads.  Consider printing these parts in a more thermally stable material like ABS, ASA, or PC instead of PLA or PETG.
+(*) The tapped holes in the 3D printed parts are all sized for M2/2-56, M3/4-40, or M4/8-32 tap diameter.  M3 tap diameter is about 0.010 inch (about 0.25mm) larger than the theoretical 4-40 tap diameter, however, the actual tolerance of the part will likely vary more than that, and perfect thread engagement is not required.  Similarly, 8-32 tap diameter about 0.007 inch (about 0.2mm) larger than M4, and 2-56 tap diameter is about 0.007 inch larger than M2.  You will likely want need a 2-56 or M2, 4-40 or M3, and 8-32 or M4 tap lubricated with a little water to form the threads.
+
+If you don't already have the necessary hardware, these sets of [socket cap screws](https://www.amazon.com/gp/product/B0BYYQSK8L) (22USD) and [flat head socket cap screws](https://www.amazon.com/gp/product/B08SQGQJ36) (23USD) should have everything needed for this project.
+
+Consider printing all parts in a more thermally stable material like ABS, ASA, PC, or PC-CF instead of PLA or PETG, both to handle the higher enclosure temperatures and also for easier tapping.
 
