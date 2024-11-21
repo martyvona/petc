@@ -60,6 +60,14 @@ If on OS X:
 brew install arduino-cli
 ```
 
+Other Linux including Raspbian - install into `~/bin`:
+```
+cd ~
+curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+# make sure ~/bin is in your PATH
+
+```
+
 One time config to install the Arduino AVR core:
 ```
 arduino-cli config init
