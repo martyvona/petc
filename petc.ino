@@ -154,7 +154,7 @@ const int HEAT_FAN_OUT_PIN = 11;
 const int COOL_FAN_OUT_PIN = 3;
 
 const int COOL_FAN_PWM = 255;
-const int HEAT_FAN_PWM = 127;
+const int HEAT_FAN_PWM = 255;
 const int CIRC_FAN_PWM = 255;
 
 const int HEAT_ON = 1, HEAT_OFF = 0;
@@ -170,8 +170,8 @@ Profile profiles[] = {
   //  MTL   MODE  MIN  MAX
   { " PLA", COOL,  20,  25 },
   { "PETG", COOL,  25,  30 },
-  { " ABS", HEAT,  50,  55 }, //temps will be limited elsewhere to MAX_ALLOWED_TEMP
-  { "  PC", HEAT,  55,  60 },
+  { " ABS", HEAT,  54,  55 }, //temps will be limited elsewhere to MAX_ALLOWED_TEMP
+  { "  PC", HEAT,  59,  60 },
 };
 const int DEFAULT_PROFILE = 2;
 const int NUM_PROFILES = 4;
@@ -260,14 +260,14 @@ void updateSensors() {
 void updateOutputs() {
 
   bool has_temp = current_temp_c >= 0;
-  bool below_min_temp = has_temp && current_temp_c <= min_temp_c;
-  bool above_max_temp = has_temp && current_temp_c >= max_temp_c;
-  bool in_temp = !below_min_temp && !above_max_temp;
+  bool below_temp = has_temp && current_temp_c <= min_temp_c;
+  bool above_temp = has_temp && current_temp_c >= max_temp_c;
+  bool in_temp = !below_temp && !above_temp;
 
   switch (state) {
   case MANUAL: break;
   case RECOVERING:
-    if (in_temp) { mode = IDLE; break; }
+    if (in_temp) { mode = profile_mode == HEAT ? CIRC : IDLE; break; }
     //otherwise fall through
   case STARTING:
     if (profile_mode == HEAT) {
@@ -279,12 +279,12 @@ void updateOutputs() {
     }
     break;
   case COOLING:
-    if (below_min_temp) { mode = IDLE; state = RECOVERING; }
-    if (above_max_temp && profile_mode == COOL) mode = COOL;
+    if (below_temp) { mode = IDLE; state = RECOVERING; }
+    if (above_temp && profile_mode == COOL) mode = COOL;
     break;
   case HEATING:
-    if (below_min_temp && profile_mode == HEAT) mode = HEAT;
-    if (above_max_temp) { mode = IDLE; state = RECOVERING; }
+    if (below_temp && profile_mode == HEAT) mode = HEAT;
+    if (above_temp) { mode = IDLE; state = RECOVERING; }
     break;
   }
 
