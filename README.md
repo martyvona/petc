@@ -9,25 +9,37 @@
 
 [(more photos)](./photos) [(schematic)](./petc_schematic.jpg)
 
-This is an enclosure temperature controller for 3D printers.  It's a work in progress.  I was inspired by [Lars' Automated Heating System for Original Enclosure](https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure), but I wanted a different [feature set](#features).
+This is an enclosure temperature controller for 3D printers.  I was inspired by [Lars' Automated Heating System for Original Enclosure](https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure), but I wanted a different [feature set](#features).
 
 There are pros and cons to experimenting with adding active heating or cooling to the enclosure of a 3D printer that was not specifically designed for it.  Of course, there can be dangers including fire hazards and the possibility of melting parts of your printer.  **If you use the information provided here, you do so at your own risk.**  I am only experimenting with this myself, and I make no claims as to the suitability or safety of any of this information.  Until fairly recently, Stratasys held key patents regarding 3D printers with heated build chambers.  It is my understanding that these patents have now effectively [expired](https://3dprintingindustry.com/news/stratasys-heated-build-chamber-for-3d-printer-patent-us6722872b1-set-to-expire-this-week-185012), but I am not a lawyer.
 
-As this project is still a work in progress, I haven't even begun to test it in actual use.  The extent to which the kind of temperature control implemented here may or may not be helpful is still an open question (at least to me), but I'm interested in experimenting with it.  When I do, I'll be using a Prusa MK4 with an [Original Prusa Enclosure](https://www.prusa3d.com/product/original-prusa-enclosure).  I've tried to make the design mostly agnostic to the specifics of the printer and enclosure.  There are some mounting holes and design choices that make it fit this Prusa setup nicely, but it should be adaptable to other configurations without too much difficulty.  The CAD is done in [OnShape](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f), so it can be copied and modified.
+I'm using a Prusa MK4 with an [Original Prusa Enclosure](https://www.prusa3d.com/product/original-prusa-enclosure), though where possible I've tried to make the design agnostic to the specifics of the printer and enclosure.  There are some mounting features that make it fit this Prusa setup nicely, but it should be adaptable to other configurations without too much difficulty.  The CAD is done in [OnShape](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f), so it can be copied and modified.
 
 The code, CAD, and documentation of this project are under the [MIT License](./LICENSE.txt).
 
-Some materials, including PLA, prefer relatively cool air temperatures.  While PLA is generally considered easy to print on non-enclosed printers, if your printer is in an enclosure, you may experience issues with PLA due to ambient heating from the printer bed.  In my experience even leaving the enclosure doors open may not always be sufficient.  This controller allows you to add a fan to your enclosure to actively exhaust the hot air and draw in more cool air from the room.
+Here are some images of the installed components in my setup.  The control box is mounted to the outside of the enclosure in the lower front left.  The heater and its fan are on an articulated mount halfway up the right rear corner of the enclosure.  The exhaust fan is mounted to the back in a cutout provided in the Prusa enclosure.  The heater and fan power supply is on the outside of the left side of the enclosure (also shown in the photo is a Raspberry Pi I've mounted to that side of the enclosure for cameras and TODO to make the temperature controller accessible on my local nework).  Wires are routed through and under the enclosure.  The sensors are not shown in the photos, but they are mounted inside the enclosure at the lower front center (combined temperature and humidity sensor); halfway up the two front corners (additional temperature sensors), and two thirds of the way back on the lower left corner.
 
-Other materials, including ABS, ASA, Nylon (PA), and polycarbonate (PC), perfer relatively hot air temperatures to reduce warping and improve layer adhesion during printing.  And these materials can be desirable for some applications for their mechanical properties and temerature resistance.  This controller allows you to add an active heating element in the enclosure with closed loop temperature control to increase the enclosure temperature more quickly and to maintain hotter temperatures than would typically be reached by the bed heater alone.
-
-How hot is hot?  Well, from what I've seen, many of these materials would be happy with air temperatures in the range of 90C.  Unfortunately, at that level, many of the plastic and electronic parts in most of the current low cost consumer 3D printers and enclosures are likely to become unstable.  For now this controller has a hardcoded limit of 45C, which is the same as [Lars'](https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure).  That's far from 90C, but it's a starting point, and by some accounts even 40-45C can help significantly reduce warping in ABS and ASA prints.  It may be possible to attempt up to around 60C by replacing plastic parts on the printer with higher temperature materials, and some say that 60C is helpful for printing materials like ABS and PC.  Of course there are a wide variety of printers now available, and some may be more compatible with higher temperatures than others.  For example, apparently Prusa [recommends a maximum enclosure temperature of 40C](https://forum.prusa3d.com/forum/postid/630914) for MK3S+, which ships with PETG parts with relatively poor high temperature stability.  This also probably applies to MK4, though now some of the PETG parts are being switched to PC-CF on MK4S.
+[![front view installed](./petc-installed-front-small.png)](./petc-installed-front-small.png)
+[![fan and psu installed](./petc-installed-fan-and-psu-small.png)](./petc-installed-fan-and-psu.png)
+[![controller installed](./petc-installed-controller-small.png)](./petc-installed-controller.png)
+[![heater installed](./petc-installed-heater-small.png)](./petc-installed-heater-small.png)
 
 It should also be possible to use this design as a starting point for various other things including
 * any project based on an Arduino Uno R3 compatible board with a 16x2 LCD, five pushbuttons, an optional high-current relay, and a clamp for strain relieving connecting wires
-* just adding temperature and/or humidity sensing to a printer enclosure (or whatever), with a local display (though that could be easily bought for cheap) and optional USB connectivity for logging or serving remotely (which is probably less easy to buy off the shelf, especially if you don't love adding questionable firmware to your network)
+* just adding temperature and/or humidity sensing to a printer enclosure (or whatever), with a local display (though that could be easily bought for cheap) and TODO optional USB connectivity for logging or serving remotely (which is probably less easy to buy off the shelf, especially if you don't love adding questionable firmware to your network)
 * any project to add a control box to the front of a printer enclosure (or whatever), particularly the Original Prusa Enclosure
 * any project to add a Mean Well power supply to the side of a printer enclosure (or whatever), particularly the Original Prusa Enclosure; you can also use the printed insulating cover for the Mean Well on its own to add a switched AC power entry port and strain relief clamp for the output wires.
+
+## Heating and Cooling
+Some materials, including PLA, prefer relatively cool air temperatures.  While PLA is generally considered easy to print on non-enclosed printers, if your printer is in an enclosure, you may experience issues with PLA due to ambient heating from the printer bed.  In my experience even leaving the enclosure doors open may not always be sufficient.  This controller allows you to add a fan to your enclosure to actively exhaust the hot air and draw in more cool air from the room.
+
+Other materials, including ABS, ASA, Nylon (PA), and polycarbonate (PC), perfer relatively hot air temperatures to reduce warping and improve layer adhesion during printing.  And these materials can be desirable for some applications for their mechanical properties and temerature resistance.  This controller allows you to add an active heating element in the enclosure with closed loop control to increase the enclosure temperature more quickly and to maintain hotter temperatures than would typically be reached by the bed heater alone.
+
+How hot is hot?  From what I've read, many of these materials would be happy with air temperatures in the range of 90C, and industrial printers with heated enclosures may use that type of temperature.  Unfortunately, many of the plastic and electronic parts in consumer 3D printers might become unstable at at that level.  For now this controller has a hardcoded limit of 45C, which is the same as [Lars'](https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure).
+
+Of course there are a wide variety of printers now available, and some may be more compatible with higher temperatures than others.  Apparently Prusa [recommends a maximum enclosure temperature of 40C](https://forum.prusa3d.com/forum/postid/630914) for MK3S+, which ships with PETG parts with relatively poor high temperature stability.  This also probably applies to MK4, though Prusa is now switching some of the PETG parts to PC-CF on the MK4S, which has better stability at high temperatures.
+
+By [some accounts](https://forum.prusa3d.com/forum/user-and-hardware-mods/heating-the-prusa-enclosure) even 40-45C can help significantly reduce warping in ABS and ASA prints.  It might be possible to attempt up to around 60C by replacing plastic parts on the printer with higher temperature materials.  Several recent consumer 3D printers with heated enclosures reach temperatures around that, for example some [Quidi](https://qidi3d.com) printers reach 60C or 65C, and the newly announded [Prusa Core One](https://www.prusa3d.com/product/prusa-core-one) can reach 55C.
 
 ## Features
 * printable parts designed in [OnShape](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f)
@@ -35,6 +47,7 @@ It should also be possible to use this design as a starting point for various ot
 * auto shutoff timer
 * multiple material profiles (e.g. cooling mode for PLA, heating mode for ABS, etc)
 * front panel user interface with LCD and buttons allows setting the profile, the shutoff timer, and also manual adjustments to the operating mode and set temperatures
+* TODO optional USB serial interface that can be accessed remotely with a web server running on a Raspberry Pi
 * multiple hot pluggable daisy chained [DS18B20 1-Wire temperature sensors](https://www.sparkfun.com/products/18367) with 6ft leads
 * optional hot pluggable [DHT20 I2C temperature and humidity sensor](https://www.sparkfun.com/products/18364)
 * electronics box and power supply located outside the enclosure
@@ -42,16 +55,10 @@ It should also be possible to use this design as a starting point for various ot
 * optional exhaust fan for cooling mode
 * optional 200W 24V automotive [PTC heater](https://www.amazon.com/gp/product/B081P7L32X) with fan for heating mode
 * optional USB serial interface, can plug into e.g. a Raspberry PI to expose a remote web interface
-* uses 24V PWM controlled 4 wire [PC fans](https://www.sameskydevices.com/product/thermal-management/dc-fans/axial-fans/cfm-6025bf-235-274-22) with tachometer feedback
+* uses 24V PWM controlled 4 wire [PC fans](https://www.sameskydevices.com/product/thermal-management/dc-fans/axial-fans/cfm-6025bf-235-274-22) TODO with tachometer feedback
 * optional mounting to [Original Prusa Enclosure](https://www.prusa3d.com/product/original-prusa-enclosure)
-* all connections pigtailed to keyed connectors of different types to facilitate servicing
+* all connections strain relieved and pigtailed to keyed connectors of different types to facilitate servicing
 * separate power supplies for controller/sensors/display and heater/fans, so if you only want sensing you don't need the 24V high current power supply.
-
-# TODO
-* test on printer
-* add serial monitor
-* read fan tachometer feedback
-* web server that talks to serial monitor
 
 ## Building the Code
 
