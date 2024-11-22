@@ -1,8 +1,5 @@
-; based on https://www.reddit.com/r/prusa3d/comments/16clrhl/comment/jzk8pgm
-M84        ; steppers off
-M104 S0    ; extruder off
-M190 R120  ; wait for heatbed to reach 120C
-M85  S5460 ; set Prusa inactivity timer to 91 min
-M0   S5400 ; delay 90 min
-M140 S0    ; turn heatbed off
-M85  S1800 ; set Prusa inactivity timer to 30 min (default)
+M190 S120    ; set heatbed to 120C and wait for it
+M73 P0 R5400 ; set print job timer to 0% complete, 90 min remaining
+G4 S5400     ; dwell for 90 min
+M140 S0      ; turn heatbed off
+M73 P100 R0  ; set print job timer to 100% complete, 0 min remaining
