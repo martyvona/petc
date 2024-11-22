@@ -113,11 +113,17 @@ Here are some images of the installed components in my setup.  The control box i
 [![controller installed](./petc-installed-controller-small.png)](./petc-installed-controller.png)
 [![heater installed](./petc-installed-heater-small.png)](./petc-installed-heater-small.png)
 
+The assembly should be mostly self-evident from the [CAD model](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f) and the [photos](./photos).  A fair level of experience with electronics is needed. The [BOM](#bill-of-materials) is also annotated with some tips.
+
+Heat-set inserts or nuts are popular ways to add threaded holes to 3D printed parts.  However, with most materials other than PLA, it also usually works to just directly tap threads.  This is generally my preference, it's less complex to design, costs less once you have the taps, and can result in more compact parts.  For this project consider printing all parts in a more thermally stable material like ABS, ASA, PC, or PC-CF instead of PLA or PETG, both to handle the higher enclosure temperatures and also for easier tapping.
+
+The tapped holes in the 3D printed parts for this project are all sized for M2/2-56, M3/4-40, or M4/8-32 tap diameter.  M3 tap diameter is about 0.010 inch (about 0.25mm) larger than the theoretical 4-40 tap diameter, however, the actual tolerance of the part will likely vary more than that, and perfect thread engagement is not required.  Similarly, 8-32 tap diameter about 0.007 inch (about 0.2mm) larger than M4, and 2-56 tap diameter is about 0.007 inch larger than M2.  You will likely want need a 2-56 or M2, 4-40 or M3, and 8-32 or M4 tap to form the threads.  I usually dip the taps in water periodically to lubricate, clean, and cool them.
+
+If you don't already have the necessary hardware, these sets of [socket cap screws](https://www.amazon.com/gp/product/B0BYYQSK8L) (22USD) and [flat head socket cap screws](https://www.amazon.com/gp/product/B08SQGQJ36) (23USD) should have everything needed for this project.
+
 ## Bill of Materials
 
 Prices shown are approximate at time of writing not including tax or shipping.  Total cost is in the range of $250, but could be a lot less depending on which bells and whistles you want and what materials you already have.
-
-I probably will not write up more detailed build instructions than this.  The assembly should be mostly self-evident from the [CAD model](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f) and the [photos](./photos).  A fair level of experience with electronics is needed. This BOM is also annotated with some tips.
 
 1. SparkFun [RedBoard Plus](https://www.sparkfun.com/products/18158), 22USD.  This is an Arduino Uno R3 compatible board with some extra features that are useful for this project:
     * relatively high current 5V power distribution
@@ -153,19 +159,12 @@ I probably will not write up more detailed build instructions than this.  The as
 1. Two M3x10 and two M3x16 socket head cap screws, two M3 flat washers, and two M3 lockwashers, used on the standoffs for mounting the heater.  This arrangement attemps to avoid putting either the fan or the 3D printed parts very to the heater.
 1. Two M3x8 or 4-40x5/16 socket cap screws to mount the thermostat to the heater.
 1. Four M4x8 socket cap screws and four M5 washers to hold the heater element in its enclosure.
-1. Two M4x8 or 8-32x5/16 socket cap screws to mount the heater fan (*).
-1. Two 8-32x3/4 inch or two M4x20 socket head cap screws for the adjustable joints on the heater mount (*).
-1. Three M3x8, M3x10, 4-40x5/16, or 4-40x3/8 socket cap screws to mount the heater assembly to the Original Prusa Enclosure (*).
-1. Nine M3x12 or 4-40x1/2 flat head socket cap screws for the control box (*).
+1. Two M4x8 or 8-32x5/16 socket cap screws to mount the heater fan.
+1. Two 8-32x3/4 inch or two M4x20 socket head cap screws for the adjustable joints on the heater mount.
+1. Three M3x8, M3x10, 4-40x5/16, or 4-40x3/8 socket cap screws to mount the heater assembly to the Original Prusa Enclosure.
+1. Nine M3x12 or 4-40x1/2 flat head socket cap screws for the control box.
 1. Eight M3x6 or 4-40x1/4 socket cap screws for the control box.  There is a close clearance on one of the screw heads to a header component on the RedBoard and I found that the 4-40 screw head fit better there than M3.  However, it would also probably be fine to just leave that one screw out.
 1. Two M3x8, M3x10, 4-40x5/16, or 4-40x3/8 socket head cap screws for attaching the control box to the front of the Original Prusa Enclosure.
-1. Two or four M4x8 or 8-32x5/16 socket cap screws to mount the cooling fan (*).
-1. Six M2x12 or 2-56x1/2 socket cap screws to mount the cooling fan flaps (*).
-1. Four M3x8, M3x10, 4-40x5/16, or 4-40x3/8 socket cap screws to mount the cooling fan assembly to the Original Prusa Enclosure (*).
-
-(*) The tapped holes in the 3D printed parts are all sized for M2/2-56, M3/4-40, or M4/8-32 tap diameter.  M3 tap diameter is about 0.010 inch (about 0.25mm) larger than the theoretical 4-40 tap diameter, however, the actual tolerance of the part will likely vary more than that, and perfect thread engagement is not required.  Similarly, 8-32 tap diameter about 0.007 inch (about 0.2mm) larger than M4, and 2-56 tap diameter is about 0.007 inch larger than M2.  You will likely want need a 2-56 or M2, 4-40 or M3, and 8-32 or M4 tap lubricated with a little water to form the threads.
-
-If you don't already have the necessary hardware, these sets of [socket cap screws](https://www.amazon.com/gp/product/B0BYYQSK8L) (22USD) and [flat head socket cap screws](https://www.amazon.com/gp/product/B08SQGQJ36) (23USD) should have everything needed for this project.
-
-Consider printing all parts in a more thermally stable material like ABS, ASA, PC, or PC-CF instead of PLA or PETG, both to handle the higher enclosure temperatures and also for easier tapping.
-
+1. Two or four M4x8 or 8-32x5/16 socket cap screws to mount the cooling fan.
+1. Six M2x12 or 2-56x1/2 socket cap screws to mount the cooling fan flaps.
+1. Four M3x8, M3x10, 4-40x5/16, or 4-40x3/8 socket cap screws to mount the cooling fan assembly to the Original Prusa Enclosure.
