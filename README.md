@@ -9,13 +9,11 @@
 
 [(more photos)](./photos) [(schematic)](./petc_schematic.jpg)
 
-This is an enclosure temperature controller for 3D printers.  I was inspired by [Lars' Automated Heating System for Original Enclosure](https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure), but I wanted a different [feature set](#features).
+This is an enclosure temperature controller for 3D printers.  I was inspired by [Lars' Automated Heating System for Original Enclosure](https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure), but I wanted a different [feature set](#features).  The code, CAD, and documentation of this project are under the [MIT License](./LICENSE.txt).
 
-There are pros and cons to experimenting with adding active heating or cooling to the enclosure of a 3D printer that was not specifically designed for it.  Of course, there can be dangers including fire hazards and the possibility of melting parts of your printer.  **If you use the information provided here, you do so at your own risk.**  I am only experimenting with this myself, and I make no claims as to the suitability or safety of any of this information.  Until fairly recently, Stratasys held key patents regarding 3D printers with heated build chambers.  It is my understanding that these patents have now effectively [expired](https://3dprintingindustry.com/news/stratasys-heated-build-chamber-for-3d-printer-patent-us6722872b1-set-to-expire-this-week-185012), but I am not a lawyer.
+There are pros and cons to experimenting with adding active heating or cooling to the enclosure of a 3D printer that was not specifically designed for it.  Of course, there can be dangers including fire hazards and the possibility of melting parts of your printer.  **If you use the information provided here, you do so at your own risk.**  I am only experimenting with this myself, and I make no claims as to the suitability or safety of any of this information.  Until fairly recently, Stratasys held key patents regarding 3D printers with heated build chambers.  It is my understanding that these patents have now effectively [expired](https://3dprintingindustry.com/news/stratasys-heated-build-chamber-for-3d-printer-patent-us6722872b1-set-to-expire-this-week-185012).
 
 I'm using a Prusa MK4 with an [Original Prusa Enclosure](https://www.prusa3d.com/product/original-prusa-enclosure), though where possible I've tried to make the design agnostic to the specifics of the printer and enclosure.  There are some mounting features that make it fit this Prusa setup nicely, but it should be adaptable to other configurations without too much difficulty.  The CAD is done in [OnShape](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f), so it can be copied and modified.
-
-The code, CAD, and documentation of this project are under the [MIT License](./LICENSE.txt).
 
 Here are some images of the installed components in my setup.  The control box is mounted to the outside of the enclosure in the lower front left.  The heater and its fan are on an articulated mount halfway up the right rear corner of the enclosure.  The exhaust fan is mounted to the back in a cutout provided in the Prusa enclosure.  The heater and fan power supply is on the outside of the left side of the enclosure (also shown in the photo is a Raspberry Pi I've mounted to that side of the enclosure for cameras and TODO to make the temperature controller accessible on my local nework).  Wires are routed through and under the enclosure.  The sensors are not shown in the photos: a combined temperature and humidity sensor is mounted inside the enclosure at the lower front center, and additional temperature sensors are halfway up the two front corners and two thirds of the way back on the lower left corner.  The control software averages the readings of all the temperature sensors.
 
@@ -47,14 +45,16 @@ By [some accounts](https://forum.prusa3d.com/forum/user-and-hardware-mods/heatin
 * auto shutoff timer
 * multiple material profiles (e.g. cooling mode for PLA, heating mode for ABS, etc)
 * front panel user interface with LCD and buttons allows setting the profile, the shutoff timer, and also manual adjustments to the operating mode and set temperatures
-* TODO optional USB serial interface that can be accessed remotely with a web server running on a Raspberry Pi
+* USB serial interface, can plug into e.g. a Raspberry PI TODO to expose a remote web interface
 * multiple hot pluggable daisy chained [DS18B20 1-Wire temperature sensors](https://www.sparkfun.com/products/18367) with 6ft leads
 * optional hot pluggable [DHT20 I2C temperature and humidity sensor](https://www.sparkfun.com/products/18364)
 * electronics box and power supply located outside the enclosure
 * can be built only for sensing, sensing+heating, sensing+cooling, or sensing+heating+cooling
 * optional exhaust fan for cooling mode
 * optional 200W 24V automotive [PTC heater](https://www.amazon.com/gp/product/B081P7L32X) with fan for heating mode
-* optional USB serial interface, can plug into e.g. a Raspberry PI to expose a remote web interface
+* no 3D printed parts touch the heater
+* optional LED to indicate when heater is active
+* hardware thermal cutoff attached to heater as a failsafe
 * uses 24V PWM controlled 4 wire [PC fans](https://www.sameskydevices.com/product/thermal-management/dc-fans/axial-fans/cfm-6025bf-235-274-22) TODO with tachometer feedback
 * optional mounting to [Original Prusa Enclosure](https://www.prusa3d.com/product/original-prusa-enclosure)
 * all connections strain relieved and pigtailed to keyed connectors of different types to facilitate servicing
