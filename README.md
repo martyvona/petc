@@ -15,19 +15,6 @@ There are pros and cons to experimenting with adding active heating or cooling t
 
 I'm using a Prusa MK4 with an [Original Prusa Enclosure](https://www.prusa3d.com/product/original-prusa-enclosure), though where possible I've tried to make the design agnostic to the specifics of the printer and enclosure.  There are some mounting features that make it fit this Prusa setup nicely, but it should be adaptable to other configurations without too much difficulty.  The CAD is done in [OnShape](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f), so it can be copied and modified.
 
-Here are some images of the installed components in my setup.  The control box is mounted to the outside of the enclosure in the lower front left.  The heater and its fan are on an articulated mount halfway up the right rear corner of the enclosure.  The exhaust fan is mounted to the back in a cutout provided in the Prusa enclosure.  The heater and fan power supply is on the outside of the left side of the enclosure (also shown in the photo is a Raspberry Pi I've mounted to that side of the enclosure for cameras and TODO to make the temperature controller accessible on my local nework).  Wires are routed through and under the enclosure.  The sensors are not shown in the photos: a combined temperature and humidity sensor is mounted inside the enclosure at the lower front center, and additional temperature sensors are halfway up the two front corners and two thirds of the way back on the lower left corner.  The control software averages the readings of all the temperature sensors.
-
-[![front view installed](./petc-installed-front-small.png)](./petc-installed-front-small.png)
-[![fan and psu installed](./petc-installed-fan-and-psu-small.png)](./petc-installed-fan-and-psu.png)
-[![controller installed](./petc-installed-controller-small.png)](./petc-installed-controller.png)
-[![heater installed](./petc-installed-heater-small.png)](./petc-installed-heater-small.png)
-
-It should also be possible to use this design as a starting point for various other things including
-* any project based on an Arduino Uno R3 compatible board with a 16x2 LCD, five pushbuttons, an optional high-current relay, and a clamp for strain relieving connecting wires
-* just adding temperature and/or humidity sensing to a printer enclosure (or whatever), with a local display (though that could be easily bought for cheap) and TODO optional USB connectivity for logging or serving remotely (which is probably less easy to buy off the shelf, especially if you don't love adding questionable firmware to your network)
-* any project to add a control box to the front of a printer enclosure (or whatever), particularly the Original Prusa Enclosure
-* any project to add a Mean Well power supply to the side of a printer enclosure (or whatever), particularly the Original Prusa Enclosure; you can also use the printed insulating cover for the Mean Well on its own to add a switched AC power entry port and strain relief clamp for the output wires.
-
 ## Heating and Cooling
 Some materials, including PLA, prefer relatively cool air temperatures.  While PLA is generally considered easy to print on non-enclosed printers, if your printer is in an enclosure, you may experience issues with PLA due to ambient heating from the printer bed.  In my experience even leaving the enclosure doors open may not always be sufficient.  This controller allows you to add a fan to your enclosure to actively exhaust the hot air and draw in more cool air from the room.
 
@@ -62,6 +49,12 @@ The 200W heating element seems able to easily maintain 44-45C during printing, b
 * all connections strain relieved and pigtailed to keyed connectors of different types to facilitate servicing
 * separate power supplies for controller/sensors/display and heater/fans, so if you only want sensing you don't need the 24V high current power supply.
 
+It should also be possible to use this design as a starting point for various other things including
+* any project based on an Arduino Uno R3 compatible board with a 16x2 LCD, five pushbuttons, an optional high-current relay, and a clamp for strain relieving connecting wires
+* just adding temperature and/or humidity sensing to a printer enclosure (or whatever), with a local display (though that could be easily bought for cheap) and TODO optional USB connectivity for logging or serving remotely (which is probably less easy to buy off the shelf, especially if you don't love adding questionable firmware to your network)
+* any project to add a control box to the front of a printer enclosure (or whatever), particularly the Original Prusa Enclosure
+* any project to add a Mean Well power supply to the side of a printer enclosure (or whatever), particularly the Original Prusa Enclosure; you can also use the printed insulating cover for the Mean Well on its own to add a switched AC power entry port and strain relief clamp for the output wires.
+
 ## Building the Code
 
 If on OS X:
@@ -69,12 +62,11 @@ If on OS X:
 brew install arduino-cli
 ```
 
-Other Linux including Raspbian - install into `~/bin`:
+Linux (including Raspbian) - install into `~/bin`:
 ```
 cd ~
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 # make sure ~/bin is in your PATH
-
 ```
 
 One time config to install the Arduino AVR core:
@@ -111,6 +103,15 @@ To compile and then upload:
 ```
 arduino-cli compile --fqbn arduino:avr:uno -e -u -p /dev/cu.usbserial-110 .
 ```
+
+## Hardware Installation
+
+Here are some images of the installed components in my setup.  The control box is mounted to the outside of the enclosure in the lower front left.  The heater and its fan are on an articulated mount halfway up the right rear corner of the enclosure.  The exhaust fan is mounted to the back in a cutout provided in the Prusa enclosure.  The heater and fan power supply is on the outside of the left side of the enclosure (also shown in the photo is a Raspberry Pi I've mounted to that side of the enclosure for cameras and TODO to make the temperature controller accessible on my local nework).  Wires are routed through and under the enclosure.  The sensors are not shown in the photos: a combined temperature and humidity sensor is mounted inside the enclosure at the lower front center, and additional temperature sensors are halfway up the two front corners and two thirds of the way back on the lower left corner.  The control software averages the readings of all the temperature sensors.
+
+[![front view installed](./petc-installed-front-small.png)](./petc-installed-front-small.png)
+[![fan and psu installed](./petc-installed-fan-and-psu-small.png)](./petc-installed-fan-and-psu.png)
+[![controller installed](./petc-installed-controller-small.png)](./petc-installed-controller.png)
+[![heater installed](./petc-installed-heater-small.png)](./petc-installed-heater-small.png)
 
 ## Bill of Materials
 
