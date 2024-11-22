@@ -115,9 +115,11 @@ Here are some images of the installed components in my setup.  The control box i
 
 The assembly should be mostly self-evident from the [CAD model](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f) and the [photos](./photos).  A fair level of experience with electronics is needed. The [BOM](#bill-of-materials) is also annotated with some tips.
 
-Heat-set inserts or nuts are popular ways to add threaded holes to 3D printed parts.  However, with most materials other than PLA, it also usually works to just directly tap threads.  This is generally my preference, it's less complex to design, costs less once you have the taps, and can result in more compact parts.  For this project consider printing all parts in a more thermally stable material like ABS, ASA, PC, or PC-CF instead of PLA or PETG, both to handle the higher enclosure temperatures and also for easier tapping.
+Heat-set inserts or nuts are popular ways to add threaded holes to 3D printed parts.  However, with most materials other than PLA, it also usually works to just directly tap threads.  This is generally my preference: it's less complex to design, usually more compact, reduces part count, and costs less once you have the taps.
 
 The tapped holes in the 3D printed parts for this project are all sized for M2/2-56, M3/4-40, or M4/8-32 tap diameter.  M3 tap diameter is about 0.010 inch (about 0.25mm) larger than the theoretical 4-40 tap diameter, however, the actual tolerance of the part will likely vary more than that, and perfect thread engagement is not required.  Similarly, 8-32 tap diameter about 0.007 inch (about 0.2mm) larger than M4, and 2-56 tap diameter is about 0.007 inch larger than M2.  You will likely want need a 2-56 or M2, 4-40 or M3, and 8-32 or M4 tap to form the threads.  I usually dip the taps in water periodically to lubricate, clean, and cool them.
+
+For this project consider printing all parts in a more thermally stable material like ABS, ASA, PC, or PC-CF instead of PLA or PETG, both to handle the higher enclosure temperatures and also for easier tapping.
 
 If you don't already have the necessary hardware, these sets of [socket cap screws](https://www.amazon.com/gp/product/B0BYYQSK8L) (22USD) and [flat head socket cap screws](https://www.amazon.com/gp/product/B08SQGQJ36) (23USD) should have everything needed for this project.
 
