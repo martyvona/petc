@@ -2,12 +2,12 @@
 
 # Printer Enclosure Temperature Controller
 
-[![cutaway view](./petc-controller-cutaway-small.png)](./petc-controller-cutaway.png)
-[![heater](./petc-heater-small.png)](./petc-heater.png)
-[![psu](./petc-psu-small.png)](./petc-psu.png)
-[![fan](./petc-fan-small.png)](./petc-fan.png)
+[![cutaway view](./photos/petc-controller-cutaway-small.png)](./photos/petc-controller-cutaway.png)
+[![heater](./photos/petc-heater-small.png)](./photos/petc-heater.png)
+[![psu](./photos/petc-psu-small.png)](./photos/petc-psu.png)
+[![fan](./photos/petc-fan-small.png)](./photos/petc-fan.png)
 
-[(more photos)](./photos) [(schematic)](./petc_schematic.jpg)
+[(more photos)](./photos/photos) [(schematic)](./photos/petc_schematic.jpg)
 
 This is an enclosure temperature controller for 3D printers.  I was inspired by [Lars' Automated Heating System for Original Enclosure](https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure), but I wanted a different [feature set](#features).  The code, CAD, and documentation of this project are under the [MIT License](./LICENSE.txt).
 
@@ -108,10 +108,10 @@ arduino-cli compile --fqbn arduino:avr:uno -e -u -p /dev/cu.usbserial-110 .
 
 Here are some images of the installed components in my setup.  The control box is mounted to the outside of the enclosure in the lower front left.  The heater and its fan are on an articulated mount halfway up the right rear corner of the enclosure.  The exhaust fan is mounted to the back in a cutout provided in the Prusa enclosure.  The heater and fan power supply is on the outside of the left side of the enclosure (also shown in the photo is a Raspberry Pi I've mounted to that side of the enclosure for cameras and TODO to make the temperature controller accessible on my local nework).  Wires are routed through and under the enclosure.  The sensors are not shown in the photos: a combined temperature and humidity sensor is mounted inside the enclosure at the lower front center, and additional temperature sensors are halfway up the two front corners and two thirds of the way back on the lower left corner.  The control software averages the readings of all the temperature sensors.
 
-[![front view installed](./petc-installed-front-small.png)](./petc-installed-front-small.png)
-[![fan and psu installed](./petc-installed-fan-and-psu-small.png)](./petc-installed-fan-and-psu.png)
-[![controller installed](./petc-installed-controller-small.png)](./petc-installed-controller.png)
-[![heater installed](./petc-installed-heater-small.png)](./petc-installed-heater-small.png)
+[![front view installed](./photos/petc-installed-front-small.png)](./photos/petc-installed-front-small.png)
+[![fan and psu installed](./photos/petc-installed-fan-and-psu-small.png)](./photos/petc-installed-fan-and-psu.png)
+[![controller installed](./photos/petc-installed-controller-small.png)](./photos/petc-installed-controller.png)
+[![heater installed](./photos/petc-installed-heater-small.png)](./photos/petc-installed-heater-small.png)
 
 The assembly should be mostly self-evident from the [CAD model](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f) and the [photos](./photos).  A fair level of experience with electronics is needed. The [BOM](#bill-of-materials) is also annotated with some tips.
 
