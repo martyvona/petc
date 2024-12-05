@@ -140,8 +140,8 @@ OneWire one_wire(DS18B20_IN_PIN);
 DallasTemperature dallas_temperature(&one_wire);
 boolean dt_initialized = false;
 
-const int MAX_NUM_DS18B20 = 4;
-float ds18b20_weights[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+const int MAX_NUM_DS18B20 = 8;
+float ds18b20_weights[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
 
 float current_temp_c = -1;
 
