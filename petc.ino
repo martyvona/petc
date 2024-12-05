@@ -289,11 +289,13 @@ void updateOutputs() {
     //otherwise fall through
   case STARTING:
     if (profile_mode == HEAT) {
-      if (has_temp && current_temp_c < max_temp_c) { mode = HEAT; state = HEATING; }
+      if (!has_temp) mode = IDLE;
+      else if (current_temp_c < max_temp_c) { mode = HEAT; state = HEATING; }
       else { mode = CIRC; state = RECOVERING; }
     } else {
-      if (has_temp && current_temp_c > min_temp_c) { mode = COOL; state = COOLING; }
-      else { mode = CIRC; state = RECOVERING; }
+      if (!has_temp) mode = IDLE;
+      else if (current_temp_c > min_temp_c) { mode = COOL; state = COOLING; }
+      else { mode = IDLE; state = RECOVERING; }
     }
     break;
   case COOLING:
