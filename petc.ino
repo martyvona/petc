@@ -16,32 +16,16 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  
 
-//there are reports that Prusa recommends a max enclosure temp of 40c
+//there are reports that Prusa recommends a max enclosure temp of 40C
+//and that the PETG printed parts can deform when attempting 60C enclosure
 //https://forum.prusa3d.com/forum/postid/630914
 //
-//Lars' "Automated Heating System for Original Enclosure" allows up to 45c
+//Lars' "Automated Heating System for Original Enclosure" allows up to 45C
 //https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure
-//
-//apparently, at least for MK4, Prusa supplies the printed parts in PETG
-//for MK4S Prusa is switching to PCCF for a subset of the parts
-//it might be possible to run somewhat hotter by replacing some or all of the PETG parts with e.g. ASA or PCCF
-//however other factors such as the electronics and lubricants also need to be considered
-//there is some thought those might be OK-ish up to perhaps 60c
-//
-//it appears that ideally ABS and PC would like e.g. 90c
-//however, some people report that ABS warping (and sensitivity to drafts) is greatly reduced above 50c
-//and that 60c is a good temp for PC
-//
-//glass transition temps:
-//PETG 85c
-//ASA 100c
-//ABS 105c
-//PC 147c
-//
-//though there are reports of significant deformation of PETG printer parts with enclosure temp of only 60c
-//probably at least in part b/c measured enclosure temp is of course not equal to temps experienced by each part
-//https://forum.prusa3d.com/forum/postid/630914
-const int MAX_ALLOWED_TEMP = 45;
+const int MAX_SET_TEMP = 45;
+
+//Prusa Blaze Cut fire suppression system (T033E) has a max operating temp of 90C, activates at 105C +/-3C
+const int SAFETY_TEMP = 85;
 
 int min_temp_c = -1, max_temp_c = -1;
 
@@ -180,7 +164,7 @@ Profile profiles[] = {
   //  MTL   MODE  MIN  MAX
   { " PLA", COOL,  20,  25 },
   { "PETG", COOL,  25,  30 },
-  { " ABS", HEAT,  54,  55 }, //temps will be limited elsewhere to MAX_ALLOWED_TEMP
+  { " ABS", HEAT,  54,  55 }, //temps will be limited elsewhere to MAX_SET_TEMP
   { "  PC", HEAT,  59,  60 },
 };
 const int DEFAULT_PROFILE = 2;
@@ -191,9 +175,9 @@ int profile_mode = COOL; //HEAT or COOL
 void setProfile(int p) {
   max_temp_c = profiles[p].max_temp_c;
   min_temp_c = min(max_temp_c - 1, profiles[p].min_temp_c);
-  if (max_temp_c > MAX_ALLOWED_TEMP) {
-    min_temp_c = MAX_ALLOWED_TEMP - (max_temp_c - min_temp_c);
-    max_temp_c = MAX_ALLOWED_TEMP;
+  if (max_temp_c > MAX_SET_TEMP) {
+    min_temp_c = MAX_SET_TEMP - (max_temp_c - min_temp_c);
+    max_temp_c = MAX_SET_TEMP;
   }
   profile_mode = profiles[p].mode == HEAT ? HEAT : COOL;
   mode = IDLE;
@@ -308,7 +292,7 @@ void updateOutputs() {
     break;
   }
 
-  if ((!timerRunning() || !has_temp) && mode == HEAT) mode = IDLE;
+  if (mode == HEAT && !timerRunning() || !has_temp || current_max_temp_c > SAFETY_TEMP) mode = IDLE;
 
   switch (mode) {
   case IDLE:
