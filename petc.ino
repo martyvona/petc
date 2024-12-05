@@ -143,7 +143,7 @@ boolean dt_initialized = false;
 const int MAX_NUM_DS18B20 = 8;
 float ds18b20_weights[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
 
-float current_temp_c = -1;
+float current_temp_c = -1, current_min_temp_c = -1, current_max_temp_c = -1;
 
 #include <DHT20.h>
 
@@ -229,6 +229,8 @@ void updateSensors() {
   unsigned long now = millis();
   if (next_sensor_update > 0 && now < next_sensor_update) return;
 
+  current_min_temp_c = current_max_temp_c = -1;
+
   float sum_weights = 0.0f, dht20_temp = -1, avg = 0.0f;
 
   if (!dht20.isConnected()) { dht20_initialized = false; current_humidity = -1; }
@@ -241,6 +243,7 @@ void updateSensors() {
       dht20_temp = dht20.getTemperature();
       sum_weights += dht20_weight;
       dht20.requestData();
+      current_min_temp_c = current_max_temp_c = dht20_temp;
     }
   }
 
@@ -255,7 +258,12 @@ void updateSensors() {
     dt_initialized = true;
   } else {
     for (int i = 0; i < ndt; i++) sum_weights += ds18b20_weights[i];
-    for (int i = 0; i < ndt; i++) avg += (ds18b20_weights[i] / sum_weights) * dallas_temperature.getTempCByIndex(i);
+    for (int i = 0; i < ndt; i++) {
+        float dt_temp = dallas_temperature.getTempCByIndex(i);
+        avg += (ds18b20_weights[i] / sum_weights) * dt_temp;
+        current_min_temp_c = current_min_temp_c >= 0 ? min(current_min_temp_c, dt_temp) : dt_temp;
+        current_max_temp_c = max(current_max_temp_c, dt_temp);
+    }
     dallas_temperature.requestTemperatures();
   }
 
@@ -327,14 +335,22 @@ void updateOutputs() {
 void updateDisplay() {
   char nn[3]; nn[2] = 0;
 
-  bool odd_sec = (millis() / 1000) & 1;
+  unsigned long sec = millis() / 1000;
+  bool odd_sec = sec & 1;
   bool blink = !buttonDown() && odd_sec;
 
   lcd.setCursor(0, 0);
 
-  writeStr(itoa2((int)current_temp_c, nn));
-  lcd.write('.');
-  writeStr(itoa2(current_temp_c >= 0 ? (int)((current_temp_c - (int)current_temp_c) * 100) : -1, nn));
+  bool show_minmax = (sec % 5) == 4;
+  if (show_minmax) {
+      writeStr(itoa2((int)current_min_temp_c, nn));
+      lcd.write('-');
+      writeStr(itoa2((int)current_max_temp_c, nn));
+  } else {
+      writeStr(itoa2((int)current_temp_c, nn));
+      lcd.write('.');
+      writeStr(itoa2(current_temp_c >= 0 ? (int)((current_temp_c - (int)current_temp_c) * 100) : -1, nn));
+  }
   lcd.write('C');
     
   lcd.write(' ');
