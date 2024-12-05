@@ -327,7 +327,7 @@ void updateDisplay() {
 
   lcd.setCursor(0, 0);
 
-  bool show_minmax = (sec % 5) == 4;
+  bool show_minmax = (sec % 10) >= 8; //show min/max for 2 out of every 10s
   if (show_minmax) {
       writeStr(itoa2((int)current_min_temp_c, nn));
       lcd.write('-');
