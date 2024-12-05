@@ -166,7 +166,7 @@ Profile profiles[] = {
   { "PETG", COOL,  25,  30 },
   { " ABS", HEAT,  54,  55 }, //temps will be limited elsewhere to MAX_SET_TEMP
   { "  PC", HEAT,  59,  60 },
-  { "ACTL", HEAT,  64,  65 }
+  { " POM", HEAT,  64,  65 }
 };
 const int DEFAULT_PROFILE = 2;
 const int NUM_PROFILES = 5;
@@ -184,6 +184,10 @@ void setProfile(int p) {
   mode = IDLE;
   state = timerRunning() ? STARTING : MANUAL;
 }
+
+/* Serial Commands ****************************************************************************************************/
+
+//TODO
 
 /* Update Functions ***************************************************************************************************/
 
