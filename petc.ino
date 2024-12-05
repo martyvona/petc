@@ -382,8 +382,8 @@ void updateUI() {
     case NO_INPUT: break;
     case MODE_INPUT: incr(mode, NUM_MODES); state = MANUAL; break;
     case PROFILE_INPUT: setProfile(incr(profile, NUM_PROFILES)); break;
-    case MIN_TEMP_INPUT: if (min_temp_c < max_temp_c - 1) incr(min_temp_c, MAX_ALLOWED_TEMP); break;
-    case MAX_TEMP_INPUT: if (incr(max_temp_c, MAX_ALLOWED_TEMP) < min_temp_c) max_temp_c = min_temp_c + 1; break;
+    case MIN_TEMP_INPUT: if (min_temp_c < max_temp_c - 1) incr(min_temp_c, MAX_SET_TEMP + 1); break;
+    case MAX_TEMP_INPUT: if (incr(max_temp_c, MAX_SET_TEMP + 1) < min_temp_c) max_temp_c = min_temp_c + 1; break;
     case HOURS_INPUT: incr(hours_remaining, 100); startTimer(); break;
     case MINUTES_INPUT: incr(minutes_remaining, 60); startTimer(); break;
     }
