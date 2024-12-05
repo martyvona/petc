@@ -166,9 +166,10 @@ Profile profiles[] = {
   { "PETG", COOL,  25,  30 },
   { " ABS", HEAT,  54,  55 }, //temps will be limited elsewhere to MAX_SET_TEMP
   { "  PC", HEAT,  59,  60 },
+  { "ACTL", HEAT,  64,  65 }
 };
 const int DEFAULT_PROFILE = 2;
-const int NUM_PROFILES = 4;
+const int NUM_PROFILES = 5;
 int profile = DEFAULT_PROFILE;
 int profile_mode = COOL; //HEAT or COOL
 
