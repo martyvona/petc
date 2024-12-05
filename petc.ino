@@ -116,6 +116,9 @@ enum { NO_INPUT, MODE_INPUT, PROFILE_INPUT, MIN_TEMP_INPUT, MAX_TEMP_INPUT, HOUR
 int current_input = NO_INPUT;
 const int LAST_INPUT = MINUTES_INPUT;
 
+unsigned long input_end_ms = 0;
+const int INPUT_TIMEOUT_MS = 30 * 1000;
+
 /* Sensors ************************************************************************************************************/
 
 unsigned long next_sensor_update = 0;
@@ -362,6 +365,7 @@ void updateDisplay() {
 }
 
 void updateUI() {
+  bool button_down = true;
   switch (getButton()) {
   case BTN_UP:
     switch (current_input) {
@@ -388,7 +392,11 @@ void updateUI() {
   case BTN_LEFT: if (--current_input < 0) current_input = LAST_INPUT; break;
   case BTN_RIGHT: if (++current_input > LAST_INPUT) current_input = NO_INPUT; break;
   case BTN_SELECT: current_input = NO_INPUT; break;
+  case BTN_NONE: button_down = false; break;
   }
+  long now = millis();
+  if (button_down && current_input != NO_INPUT) input_end_ms = now + INPUT_TIMEOUT_MS;
+  else if (now > input_end_ms) current_input = NO_INPUT;
 }
 
 /* Arduino Runtime ****************************************************************************************************/
