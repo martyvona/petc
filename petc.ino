@@ -341,7 +341,7 @@ void updateDisplay() {
       writeStr(itoa2((int)current_max_temp_c, nn));
       lcd.write('C');
   } else if (show_auto) {
-    writeStr(mode == MANUAL ? "MANUAL" : "AUTO  ");
+    writeStr(state == MANUAL ? "MANUAL" : "AUTO  ");
   } else {
       writeStr(itoa2((int)current_temp_c, nn));
       lcd.write('.');
