@@ -20,13 +20,15 @@
 //and that the PETG printed parts can deform when attempting 60C enclosure
 //https://forum.prusa3d.com/forum/postid/630914
 //
+//without its own cooling the MK4 "buddy" board tends to overheat at chamber temps above about 45C
+//
 //Lars' "Automated Heating System for Original Enclosure" allows up to 45C
 //https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure
 const int MAX_SET_TEMP = 45;
 
+//disable heating if the max temp of any sensor (not the average temp of all sensors) goes above this
 //Prusa Blaze Cut fire suppression system (T033E) has a max operating temp of 90C, activates at 105C +/-3C
-//without its own cooling the MK4 "buddy" board tends to overheat at chamber temps above about 45C
-const int SAFETY_TEMP = 50;
+const int SAFETY_TEMP = 85;
 
 int min_temp_c = -1, max_temp_c = -1;
 
