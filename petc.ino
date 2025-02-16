@@ -169,7 +169,7 @@ Profile profiles[] = { //profile temps will be limited elsewhere to MAX_SET_TEMP
   { " ABS", HEAT,  59,  60 },
   { "  PC", HEAT,  59,  60 }
 };
-const int DEFAULT_PROFILE = 2;
+const int DEFAULT_PROFILE = 3;
 const int NUM_PROFILES = 5;
 int profile = DEFAULT_PROFILE;
 int profile_mode = COOL; //HEAT or COOL
