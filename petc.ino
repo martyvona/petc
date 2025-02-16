@@ -53,7 +53,7 @@ int hours_remaining = 0, minutes_remaining = 0;
 void startTimer() {
   bool was_running = timerRunning();
   timer_end_ms = millis() + 1000L * 60 * (hours_remaining * 60 + minutes_remaining);
-  if (!was_running) state = STARTING;
+  if (!was_running || state == MANUAL) state = STARTING;
 }
 
 bool timerRunning() { return timer_end_ms > 0; }
