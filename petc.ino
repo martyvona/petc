@@ -25,7 +25,8 @@
 const int MAX_SET_TEMP = 45;
 
 //Prusa Blaze Cut fire suppression system (T033E) has a max operating temp of 90C, activates at 105C +/-3C
-const int SAFETY_TEMP = 85;
+//without its own cooling the MK4 "buddy" board tends to overheat at chamber temps above about 45C
+const int SAFETY_TEMP = 45;
 
 int min_temp_c = -1, max_temp_c = -1;
 
