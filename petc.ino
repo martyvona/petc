@@ -333,17 +333,21 @@ void updateDisplay() {
 
   lcd.setCursor(0, 0);
 
-  bool show_minmax = (sec % 10) >= 8; //show min/max for 2 out of every 10s
+  bool show_minmax = (sec % 12) >= 8 && (sec % 12) < 10; //show min/max for 2 out of every 12s
+  bool show_auto = (sec % 12) >= 10; //show auto/manual for 2 out of every 12s
   if (show_minmax) {
       writeStr(itoa2((int)current_min_temp_c, nn));
       lcd.write('-');
       writeStr(itoa2((int)current_max_temp_c, nn));
+      lcd.write('C');
+  } else if (show_auto) {
+    writeStr(mode == MANUAL ? "MANUAL" : "AUTO  ");
   } else {
       writeStr(itoa2((int)current_temp_c, nn));
       lcd.write('.');
       writeStr(itoa2(current_temp_c >= 0 ? (int)((current_temp_c - (int)current_temp_c) * 100) : -1, nn));
+      lcd.write('C');
   }
-  lcd.write('C');
     
   lcd.write(' ');
 
