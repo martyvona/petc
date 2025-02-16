@@ -298,7 +298,7 @@ void updateOutputs() {
     break;
   }
 
-  if (mode == HEAT && !timerRunning() || !has_temp || current_max_temp_c > SAFETY_TEMP) mode = IDLE;
+  if (mode == HEAT && (!timerRunning() || !has_temp || current_max_temp_c > SAFETY_TEMP)) mode = IDLE;
 
   switch (mode) {
   case IDLE:
