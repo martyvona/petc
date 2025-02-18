@@ -30,6 +30,9 @@ const int MAX_SET_TEMP = 45;
 //Prusa Blaze Cut fire suppression system (T033E) has a max operating temp of 90C, activates at 105C +/-3C
 const int SAFETY_TEMP = 85;
 
+//set to true if you have a snorkle so the cooling fan pulls in fresh air for the buddyboard
+const bool HAS_SNORKLE = true;
+
 int min_temp_c = -1, max_temp_c = -1;
 
 enum { COOL, HEAT, IDLE, CIRC };
@@ -311,7 +314,8 @@ void updateOutputs() {
   case CIRC:
     digitalWrite(HEATER_OUT_PIN, HEAT_OFF);
     analogWrite(HEAT_FAN_OUT_PIN, CIRC_FAN_PWM);
-    analogWrite(COOL_FAN_OUT_PIN, 0);
+    if (HAS_SNORKLE && profile_mode == HEAT) analogWrite(COOL_FAN_OUT_PIN, COOL_FAN_PWM);
+    else analogWrite(COOL_FAN_OUT_PIN, 0);
     break;
   case COOL:
     digitalWrite(HEATER_OUT_PIN, HEAT_OFF);
@@ -321,7 +325,8 @@ void updateOutputs() {
   case HEAT:
     digitalWrite(HEATER_OUT_PIN, HEAT_ON);
     analogWrite(HEAT_FAN_OUT_PIN, HEAT_FAN_PWM);
-    analogWrite(COOL_FAN_OUT_PIN, 0);
+    if (HAS_SNORKLE && profile_mode == HEAT) analogWrite(COOL_FAN_OUT_PIN, COOL_FAN_PWM);
+    else analogWrite(COOL_FAN_OUT_PIN, 0);
     break;
   }
 }
