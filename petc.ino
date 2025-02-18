@@ -15,23 +15,23 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  
+//set to true if you have a snorkel so the cooling fan pulls in fresh air for the buddyboard
+const bool HAS_SNORKEL = true;
+const int SNORKEL = 40; //run snorkel even in IDLE mode at or above this average temp
 
 //there are reports that Prusa recommends a max enclosure temp of 40C
 //and that the PETG printed parts can deform when attempting 60C enclosure
 //https://forum.prusa3d.com/forum/postid/630914
 //
-//without its own cooling the MK4 "buddy" board tends to overheat at chamber temps above about 45C
+//without a snorkel the MK4 "buddy" board tends to overheat at chamber temps above about 45C
 //
 //Lars' "Automated Heating System for Original Enclosure" allows up to 45C
 //https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure
-const int MAX_SET_TEMP = 45;
+const int MAX_SET_TEMP = HAS_SNORKEL ? 65 : 45;
 
 //disable heating if the max temp of any sensor (not the average temp of all sensors) goes above this
 //Prusa Blaze Cut fire suppression system (T033E) has a max operating temp of 90C, activates at 105C +/-3C
 const int SAFETY_TEMP = 85;
-
-//set to true if you have a snorkle so the cooling fan pulls in fresh air for the buddyboard
-const bool HAS_SNORKLE = true;
 
 int min_temp_c = -1, max_temp_c = -1;
 
@@ -309,12 +309,13 @@ void updateOutputs() {
   case IDLE:
     digitalWrite(HEATER_OUT_PIN, HEAT_OFF);
     analogWrite(HEAT_FAN_OUT_PIN, 0);
-    analogWrite(COOL_FAN_OUT_PIN, 0);
+    if (HAS_SNORKEL && has_temp && current_temp_c >= SNORKEL) analogWrite(COOL_FAN_OUT_PIN, COOL_FAN_PWM);
+    else analogWrite(COOL_FAN_OUT_PIN, 0);
     break;
   case CIRC:
     digitalWrite(HEATER_OUT_PIN, HEAT_OFF);
     analogWrite(HEAT_FAN_OUT_PIN, CIRC_FAN_PWM);
-    if (HAS_SNORKLE && profile_mode == HEAT) analogWrite(COOL_FAN_OUT_PIN, COOL_FAN_PWM);
+    if (HAS_SNORKEL && profile_mode == HEAT) analogWrite(COOL_FAN_OUT_PIN, COOL_FAN_PWM);
     else analogWrite(COOL_FAN_OUT_PIN, 0);
     break;
   case COOL:
@@ -325,7 +326,7 @@ void updateOutputs() {
   case HEAT:
     digitalWrite(HEATER_OUT_PIN, HEAT_ON);
     analogWrite(HEAT_FAN_OUT_PIN, HEAT_FAN_PWM);
-    if (HAS_SNORKLE && profile_mode == HEAT) analogWrite(COOL_FAN_OUT_PIN, COOL_FAN_PWM);
+    if (HAS_SNORKEL && profile_mode == HEAT) analogWrite(COOL_FAN_OUT_PIN, COOL_FAN_PWM);
     else analogWrite(COOL_FAN_OUT_PIN, 0);
     break;
   }
