@@ -168,8 +168,9 @@ struct Profile {
 };
 Profile profiles[] = { //profile temps will be limited elsewhere to MAX_SET_TEMP
   //  MTL   MODE  MIN  MAX
-  { " PLA", COOL,  20,  25 },
-  { "PETG", COOL,  25,  30 },
+  { " TPU", COOL,  20,  25 },
+  { " PLA", COOL,  25,  30 },
+  { "PETG", COOL,  30,  35 },
   { "  PA", HEAT,  49,  50 },
   { " ABS", HEAT,  59,  60 },
   { "  PC", HEAT,  59,  60 }
