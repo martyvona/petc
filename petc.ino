@@ -372,7 +372,12 @@ void updateDisplay() {
 
   lcd.write(' ');
 
-  writeStrN(current_input == PROFILE_INPUT && blink ? "    " : profiles[profile].name, 4);
+  if (current_input == PROFILE_INPUT) writeStrN(blink ? "    " : profiles[profile].name, 4);
+  else {
+    bool show_heatcool = (sec % 12) >= 10; //show HEAT/COOL for 2 out of every 12s instead of profile name
+    if (show_heatcool) writeStrN(profile_mode == HEAT ? "HEAT" : "COOL", 4);
+    else writeStrN(profiles[profile].name, 4);
+  }
 
   lcd.setCursor(0, 1);
 
