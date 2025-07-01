@@ -63,7 +63,7 @@ bool timerRunning() { return timer_end_ms > 0; }
 
 /* LCD ****************************************************************************************************************/
 
-#include "DFRobot_RGBLCD1602.h"
+#include <DFRobot_RGBLCD1602.h>
 
 const int LCD_RGB_ADDR = 0x2D;
 const int LCD_COLS = 16, LCD_ROWS = 2;
