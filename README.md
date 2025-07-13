@@ -158,7 +158,7 @@ Prices shown are approximate at time of writing not including tax or shipping.  
     * can accept the default 0.5kHz Arduino PWM frequency; apparently some other similar fans require much higher frequency PWM, which is possible but requires custom code.
 1. 1/2 inch split sleeve wire loom, 40USD [for 25ft](https://www.amazon.com/dp/B07HXSSBHB).  Optional but improves the appearance and durability of the the 24V cables.
 1. Heat shrink tubing, 12USD for a [180 piece assortment](https://www.amazon.com/dp/B084GDLSCK).  For insulating and stress relieving connections.
-1. 1.5 inch diameter [corrugated flexible conduit](https://www.amazon.com/dp/B078KHDTJK) for the snorkle, 30USD for 10 feet.  The snorkle is optional but enables temperatures above 45C for Prusa MK4(S).
+1. 1.5 inch diameter [corrugated flexible conduit](https://www.amazon.com/dp/B078KHDTJK) for the snorkle, 30USD for 10 feet.  The snorkle is optional but enables temperatures above 45C for Prusa MK4(S). Cut two 16 inch lengths.
 1. 26AWG hookup wire for making a few connections inside the control box.
 1. PC fan connector male/female extension cables, 9USD for a [four pack](https://www.amazon.com/dp/B0CNLDNZB2).  Cut two of these in half to make pigtails and connectors for the two fans.
 1. 10ft good quality USB 2.0 cables, 26USD for a [four pack](https://www.amazon.com/dp/B07D6JQFLG).  Use one of these for the USB power/data pigtail from the control box.  Cut others up to make extension cables for the fans and the DHT20 sensor.
