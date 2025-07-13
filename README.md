@@ -114,12 +114,12 @@ arduino-cli compile --fqbn arduino:avr:uno -e -u -p /dev/cu.usbserial-110 .
 
 Here are some images of the installed components in my setup.  The control box is mounted to the outside of the enclosure in the lower front left.  The heater and its fan are on an articulated mount halfway up the right rear corner of the enclosure.  The exhaust fan is mounted to the back in a cutout provided in the Prusa enclosure.  The heater and fan power supply is on the outside of the left side of the enclosure; also shown in the photo is a Raspberry Pi I've mounted to that side of the enclosure for cameras and TODO to make the temperature controller accessible on the local nework.  Wires are routed through and under the enclosure, and no new holes need to be drilled.  The sensors are hard to see in the photos, but are more visibile in the [video](https://youtube.com/shorts/DhWX0z7hWWk).  A combined temperature and humidity sensor is mounted inside the enclosure at the lower front center.  Additional temperature sensors are (1) halfway up the front left corner, (2) two thirds of the way back on the lower left, and (3) above the heater near the top of the enclosure.  The control software averages the readings of all the temperature sensors with optional weights to estimate the temperature in the build volume.
 
-[![controller installed](./photos/petc-installed-controller-small.jpg)](./photos/petc-installed-controller.jpg)
 [![snorkle installed](./photos/petc-installed-snorkle-small.jpg)](./photos/petc-installed-snorkle.jpg)
 [![front view installed](./photos/petc-installed-front-small.jpg)](./photos/petc-installed-front.jpg)
-[![back view installed](./photos/petc-installed-back-small.jpg)](./photos/petc-installed-back.jpg)
 [![side view installed](./photos/petc-installed-side-small.jpg)](./photos/petc-installed-side.jpg)
 [![heater installed](./photos/petc-installed-heater-small.jpg)](./photos/petc-installed-heater.jpg)
+[![controller installed](./photos/petc-installed-controller-small.jpg)](./photos/petc-installed-controller.jpg)
+[![back view installed](./photos/petc-installed-back-small.jpg)](./photos/petc-installed-back.jpg)
 
 The assembly should be mostly self-evident from the [CAD model](https://cad.onshape.com/documents/f44140cba6f8b67dad0ae1df/w/266792716668dc913b5493d9/e/d40b23f5562de2835c96fe1f) and the [photos](https://photos.app.goo.gl/Emhybk4XVMSFG9o47).  A fair level of experience with electronics is needed. The [BOM](#bill-of-materials) is also annotated with some tips.
 
