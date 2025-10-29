@@ -23,7 +23,7 @@ const int SNORKEL = 40; //run snorkel even in IDLE mode at or above this average
 //and that the PETG printed parts can deform when attempting 60C enclosure
 //https://forum.prusa3d.com/forum/postid/630914
 //
-//without a snorkel the MK4 "buddy" board tends to overheat at chamber temps above about 45C
+//without a snorkel the MK4 "xBuddy" board tends to overheat at chamber temps above about 45C
 //
 //Lars' "Automated Heating System for Original Enclosure" allows up to 45C
 //https://www.printables.com/model/561491-automated-heating-system-for-original-enclosure
