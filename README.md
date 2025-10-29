@@ -167,7 +167,7 @@ Prices shown are approximate at time of writing not including tax or shipping.  
 1. 14AWG silicone wire, 43USD for a [25ft/ea six color assortment](https://www.amazon.com/dp/B089CVGL3H).  Use this to make the high current cables from the power supply to the control box and from the control box to the heater.
 1. 2.5mm zip ties to mount the sensors and cables to the enclosure.  The Original Prusa Enclosure comes with a pack of these.  If you need more, [this pack of 100](https://www.amazon.com/gp/product/B015HAV2NG) is 6USD.
 1. M3x40mm standoffs, 8USD for a [10 pack](https://www.amazon.com/dp/B0B97H2WJ7).  Two of these are used to mount the heater.
-1. Two M3x10 and two M3x16 socket head cap screws, two M3 flat washers, and two M3 lockwashers, used on the standoffs for mounting the heater.  This arrangement attemps to avoid putting either the fan or the 3D printed parts very to the heater.
+1. Two M3x10 and two M3x16 socket head cap screws, two M3 flat washers, and two M3 lockwashers, used on the standoffs for mounting the heater.  This arrangement attemps to avoid putting either the fan or the 3D printed parts very close to the heater.
 1. Two M3x8 or 4-40x5/16 socket cap screws to mount the thermostat to the heater.
 1. Four M4x8 socket cap screws and four M5 washers to hold the heater element in its enclosure.
 1. Two M4x8 or 8-32x5/16 socket cap screws to mount the heater fan.
