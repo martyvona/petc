@@ -110,10 +110,9 @@ int incr(int &i, const int n) { if (i < 0) i = 0; else if (i < n - 1) i++; else 
 int decr(int &i, const int n) { if (i < 0) i = n - 1; else if (i > 0) i--; else i = n - 1; return i; }
 
 enum { MODE_INPUT, PROFILE_INPUT, MIN_TEMP_INPUT, MAX_TEMP_INPUT, HOURS_INPUT, MINUTES_INPUT };
-int current_input = HOURS_INPUT;
-const int FIRST_INPUT = MODE_INPUT;
-const int LAST_INPUT = MINUTES_INPUT;
+const int NUM_INPUTS = 6;
 const int NO_INPUT = -1;
+int current_input = HOURS_INPUT;
 
 unsigned long input_end_ms = 0;
 const int INPUT_TIMEOUT_MS = 30 * 1000;
@@ -426,8 +425,8 @@ void updateUI() {
     case MINUTES_INPUT: decr(minutes_remaining, 60); startTimer(); break;
     }
     break;
-  case BTN_LEFT: if (current_input == FIRST_INPUT) current_input = LAST_INPUT; else --current_input; break;
-  case BTN_RIGHT: if (current_input == LAST_INPUT) current_input = FIRST_INPUT; else ++current_input; break;
+  case BTN_LEFT: decr(current_input, NUM_INPUTS);
+  case BTN_RIGHT: incr(current_input, NUM_INPUTS);
   case BTN_SELECT: current_input = NO_INPUT; break;
   case BTN_NONE: button_down = false; break;
   }
